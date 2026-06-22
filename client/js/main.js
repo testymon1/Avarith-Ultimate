@@ -1,5 +1,7 @@
 import { ThreeScene } from './three-scene.js';
 
+const API_BASE_URL = 'https://avarith-production.up.railway.app/api'
+
 // ---------- DOM REFS ----------
 const loader = document.getElementById('loader');
 const loaderBar = document.getElementById('loaderBar');
@@ -224,7 +226,8 @@ waitlistForm.addEventListener('submit', async (e) => {
   waitlistBtn.disabled = true;
 
   try {
-    const response = await fetch('/api/waitlist/join', {
+    // ✅ DIGANTI! Pake API_BASE_URL
+    const response = await fetch(`${API_BASE_URL}/waitlist/join`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 
@@ -307,7 +310,8 @@ document.getElementById('authForm').addEventListener('submit', async (e) => {
   }
 
   try {
-    const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
+    // ✅ DIGANTI! Pake API_BASE_URL
+    const endpoint = isLogin ? `${API_BASE_URL}/auth/login` : `${API_BASE_URL}/auth/register`;
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
